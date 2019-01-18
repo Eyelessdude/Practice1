@@ -1,0 +1,56 @@
+package ua.nure.dudka.practice1;
+
+public class Part7 {
+    public static void main(String[] args) {
+        try {
+            System.out.print(chars2digits(args[0]) + " ");
+            System.out.print(digits2chars(Integer.valueOf(args[1])) + " ");
+            System.out.print(rightColumn(args[2]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            System.out.println("--------");
+            e.getMessage();
+        }
+    }
+
+    public static int chars2digits(String number) {
+        int result = 0;
+        int counter = number.length() - 1;
+
+        for (int i = 0; i < number.length(); i++) {
+            result += ((number.charAt(i) - 64) * Math.pow(26, counter - i));
+        }
+
+        return result;
+    }
+
+    public static String digits2chars(int number) {
+        int remainder;
+        int quotient = number;
+        StringBuilder result = new StringBuilder();
+
+        if (number <= 0) {
+            return null;
+        }
+
+        do {
+            remainder = quotient % 26;
+            quotient = quotient / 26;
+
+            if (remainder == 0) {
+                quotient--;
+                remainder = 26;
+
+            }
+
+            result.append((char) (remainder + 64));
+        } while (quotient != 0);
+
+        return result.reverse().toString();
+    }
+
+    public static String rightColumn(String number) {
+        int result = chars2digits(number);
+        return digits2chars(result + 1);
+    }
+}

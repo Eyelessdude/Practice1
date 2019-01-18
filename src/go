@@ -1,0 +1,5 @@
+#First step- compile files
+javac ua/nure/dudka/practice1/Demo.java
+
+#Second step- run *.java file
+java ua.nure.dudka.practice1.Demo
